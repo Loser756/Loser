@@ -1,0 +1,102 @@
+#include<iostream>
+using namespace std;
+
+class pizza{
+	public:
+		int max;
+		int job[5];
+		int f,r;
+		
+		pizza(){
+			f=-1;
+			r=-1;
+			max=5;
+		}
+		
+		int Is_Empty();
+		int Is_full();
+		void order();
+		void serve();
+		 
+};
+
+int que::Is_Empty(){
+	if(f==-1&&r==1){					
+	return 1;
+	}
+	else{
+		return 0;
+	}
+}
+		
+int que::Is_full(){
+	if((r+1)%max==f){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+		
+void que::order(){
+	char choice;
+	do{	
+		int e;
+		cout<<"Enter order number to be added:";
+		cin>>e;
+		if(Is_full()){
+		cout<<"oven is full.. cannot place order.";
+		}
+		else{
+			if(f==-1)
+			f=0
+			r=(r+1)%max
+			Q[r]=e
+			
+		}
+		cout<<"do you want to more more item(y/n):";
+		cin>>choice;	
+    }while(choice=='y');
+}
+		
+void que::serve(){
+	char choice;
+	do{	
+		if(Is_full()){
+			cout<<"Queue is full.. cannot enter element.";
+		}
+		else{
+			cout<<job[f]<<" is deleted."<<endl;
+			f++;
+		}
+		cout<<"do you want to serve more pizza(y/n):";
+		cin>>choice;	
+    }while(choice=='y');
+}
+
+
+
+int main(){	
+	que q;
+	int ch;
+	char choice;
+	do{
+		cout<<"1.Insert job\n2.Delete job"<<endl;
+		cin>>ch;
+		switch(ch){
+			case 1:
+				q.enque();
+				break;
+			case 2:
+				q.deque();
+				break;
+		}
+		cout<<"do you want to operate more job(y/n):";
+		cin>>choice;	
+    }while(choice=='y');
+	cout<<endl;
+	cout<<"Job Queue:";
+	for(int i=q.f;i<q.r;i++){
+		cout<<q.job[i]<<"\t";
+	}
+}
